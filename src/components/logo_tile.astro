@@ -1,0 +1,114 @@
+---
+const { title, slogan, index = 4 } = Astro.props;
+const delay = `${0.12 * index}s`;
+---
+
+<div class="logo-tile tile" style={`--delay: ${delay};`}>
+    <div class="inner">
+
+        <h1>{title}</h1>
+
+        <div class="divider"></div>
+
+        <p class="slogan">{slogan}</p>
+
+        <div class="meta">
+            <div>
+                <span>architectural engineering</span>
+                <div>
+                    <span>2022-2025</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .logo-tile {
+        width: 100%;
+        height: 100%;
+        background: var(--colour-bg);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: var(--spacing-l);
+        text-align: left;
+        transition:
+                background var(--transition-slow, 0.5s ease),
+                box-shadow var(--transition-slow, 0.5s ease),
+                transform var(--transition-med, 0.3s ease);
+    }
+
+    .logo-tile:hover {
+        background: var(--colour-bg-muted);
+        box-shadow: var(--shadow-soft);
+        transform: translateY(-2px);
+    }
+
+    .inner {
+        max-width: 460px;
+    }
+
+    .eyebrow {
+        display: inline-flex;
+        gap: 0.35rem;
+        align-items: center;
+        font-family: Montserrat, monospace;
+        font-size: var(--font-size-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--colour-fg-muted);
+        margin-bottom: var(--spacing-s);
+    }
+
+    .eyebrow-divider {
+        opacity: 0.5;
+    }
+
+    h1 {
+        text-transform: none;
+        margin: 0;
+        font-size: var(--font-size-display);
+        line-height: 1.1;
+    }
+
+    .divider {
+        width: 40%;
+        height: 1px;
+        background: var(--colour-border);
+        margin: var(--spacing-m) 0 var(--spacing-s);
+    }
+
+    .slogan {
+        font-size: var(--font-size-base);
+        max-width: 32rem;
+        color: var(--colour-fg-muted);
+    }
+
+    .meta {
+        margin-top: var(--spacing-m);
+        display: flex;
+        gap: var(--spacing-m);
+        font-family: Montserrat, monospace;
+        font-size: var(--font-size-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--colour-fg-muted);
+    }
+
+    @media (max-width: 768px) {
+        .logo-tile {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+            padding-inline: var(--spacing-m);
+        }
+
+        .inner {
+            max-width: 90%;
+        }
+
+        .divider {
+            width: 60%;
+        }
+    }
+</style>
