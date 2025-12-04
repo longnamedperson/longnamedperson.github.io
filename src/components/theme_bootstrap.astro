@@ -1,0 +1,22 @@
+---
+---
+
+<script>
+    (() => {
+        try {
+            const stored =
+                typeof window !== "undefined"
+                    ? window.localStorage.getItem("portfolio-theme")
+                    : null;
+            const root = document.documentElement;
+            if (!root) return;
+            if (stored === "dark") {
+                root.setAttribute("data-theme", "dark");
+            } else {
+                root.removeAttribute("data-theme");
+            }
+        } catch (_) {
+            /* noop */
+        }
+    })();
+</script>
