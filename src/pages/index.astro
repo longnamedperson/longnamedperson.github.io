@@ -2,96 +2,82 @@
 import LoadingOverlay from "../components/loading_overlay.astro";
 import ProjectTile from "../components/project_tile.astro";
 import LogoTile from "../components/logo_tile.astro";
+import ThemeBootstrap from "../components/theme_bootstrap.astro";
 import "../styles/global.css";
 
 const projects = [
     {
         image: "/images/img_1.jpg",
-        alt: "Project 1 image",
-        title: "Courtyard Housing",
-        subtitle: "Medium-density urban infill",
+        alt: "Canopée housing extension",
+        title: "Canopée",
         year: "2024",
-        location: "Ghent, BE",
-        role: "Concept & design",
+        location: "Turin, IT",
         description:
-            "A series of interlocking courtyard dwellings that mediate between historic brick fabric and contemporary low-energy construction."
+            "Three linked volumes around a productive greenhouse, balancing structural performance, climate response, and social functionality.",
+        link: "/canopee"
     },
     {
         image: "/images/img_2.jpg",
-        alt: "Project 2 image",
-        title: "Riverfront Pavilion",
-        subtitle: "Timber public structure",
-        year: "2023",
-        location: "Antwerp, BE",
-        role: "Design research",
+        alt: "Þoka public square concept",
+        title: "þoka",
+        year: "2025",
+        location: "Oslo, NO",
         description:
-            "Lightweight CLT pavilion exploring reversible detailing and demountable public infrastructure along the waterfront."
+            "Conceptual square between the national museum and library, mediating cultural anchors with civic landscape gestures.",
+        link: "/thoka"
     },
     {
         image: "/images/img_3.jpg",
-        alt: "Project 3 image",
-        title: "Vertical Studio",
-        subtitle: "Academic mixed-use tower",
-        year: "2022",
-        location: "Rotterdam, NL",
-        role: "Studio project",
+        alt: "Resonance winery and cultural center",
+        title: "Resonance",
+        year: "2025",
+        location: "Clavesana, IT",
         description:
-            "A vertical campus stitching together teaching, fabrication, and exhibition spaces within a compact urban footprint."
+            "Transforms a derelict monastery into a working winery and reimagines a nearby chapel as a multicultural center organized around seasonality.",
+        link: "/resonance"
     },
     {
         image: "/images/img_4.jpg",
-        alt: "Project 4 image",
-        title: "Field Lab",
-        subtitle: "Agricultural prototype",
-        year: "2022",
-        location: "Flanders, BE",
-        role: "Prototype & detailing",
+        alt: "Kinetra dual-helix academic tower",
+        title: "Kinetra",
+        year: "2024",
+        location: "Seestadt, AT",
         description:
-            "Modular field lab combining low-tech climate control with high-tech sensing for site-specific agricultural research."
+            "Off-centre dual-helix structure hosting university programs and housing above a commercial base as a local nexus.",
+        link: "/kinetra"
     },
     {
         image: "/images/img_5.jpg",
-        alt: "Project 5 image",
-        title: "Civic Stair",
-        subtitle: "Public realm intervention",
-        year: "2021",
-        location: "Brussels, BE",
-        role: "Urban strategy",
-        description:
-            "An inhabitable stair that amplifies existing desire paths, connecting fragmented public spaces across a steep topography."
+        alt: "Photography portfolio link",
+        title: "Photography",
+        description: "Browse photography projects and studies.",
+        link: "/photography"
     },
     {
         image: "/images/img_6.jpg",
-        alt: "Project 6 image",
-        title: "Workshop Annex",
-        subtitle: "Adaptive re-use",
-        year: "2021",
-        location: "Leuven, BE",
-        role: "Detail design",
+        alt: "Ferska adaptive reuse",
+        title: "Ferska",
+        year: "2024",
+        location: "Cerdanyola del Vallès, ES",
         description:
-            "A steel-framed insertion that reactivates a disused industrial shed as a fabrication annex for students and researchers."
+            "Renovation of a steel factory into a café, bike shop, and trailhead workshop for hikers and cyclists.",
+        link: "/ferska"
     },
     {
         image: "/images/img_7.jpg",
-        alt: "Project 7 image",
-        title: "Quiet Library",
-        subtitle: "Micro-library prototype",
-        year: "2020",
-        location: "Ghent, BE",
-        role: "Full design",
-        description:
-            "Compact timber structure exploring acoustic performance, daylight modulation, and intimate study atmospheres."
+        alt: "Upcoming project slot",
+        title: "Upcoming",
+        year: "",
+        location: "",
+        description: "Reserved for next commission."
     },
     {
         image: "/images/img_8.jpg",
-        alt: "Project 8 image",
-        title: "Sectional Garden",
-        subtitle: "Landscape-section study",
-        year: "2020",
-        location: "Online studio",
-        role: "Research & drawing",
-        description:
-            "Speculative landscape formed through a series of analytical sections, linking soil ecologies with architectural form."
+        alt: "Upcoming project slot",
+        title: "Upcoming",
+        year: "",
+        location: "",
+        description: "Reserved for next commission."
     }
 ];
 ---
@@ -100,6 +86,7 @@ const projects = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>lnp.</title>
+    <ThemeBootstrap />
 </head>
 
 <LoadingOverlay />
@@ -138,182 +125,75 @@ const projects = [
         </div>
 
         <div class="project-panel-body">
-            <p class="panel-kicker" id="project-panel-kicker"></p>
-            <h2 id="project-panel-title"></h2>
-            <p class="panel-subtitle" id="project-panel-subtitle"></p>
-
-            <dl class="panel-meta">
-                <div>
-                    <dt>Year</dt>
-                    <dd id="project-panel-year"></dd>
-                </div>
-                <div>
-                    <dt>Location</dt>
-                    <dd id="project-panel-location"></dd>
-                </div>
-                <div>
-                    <dt>Role</dt>
-                    <dd id="project-panel-role"></dd>
-                </div>
-            </dl>
-
+            <h2><a id="project-panel-title" href=""></a></h2>
             <p class="panel-description" id="project-panel-description"></p>
+            <p class="panel-meta-inline" id="project-panel-meta"></p>
         </div>
     </aside>
 </div>
 
-<style>
-    .project-panel {
-        position: fixed;
-        inset: 0;
-        display: none;
-        z-index: 9000;
-    }
-
-    .project-panel.is-open {
-        display: block;
-    }
-
-    .project-panel-backdrop {
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.45);
-        opacity: 0;
-        transition: opacity var(--transition-med, 0.3s ease);
-    }
-
-    .project-panel-sheet {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: min(420px, 100vw);
-        height: 100vh;
-        background: var(--colour-bg);
-        box-shadow: -20px 0 40px rgba(0, 0, 0, 0.25);
-        transform: translateX(100%);
-        transition: transform var(--transition-med, 0.3s ease);
-        display: flex;
-        flex-direction: column;
-    }
-
-    .project-panel.is-open .project-panel-backdrop {
-        opacity: 1;
-    }
-
-    .project-panel.is-open .project-panel-sheet {
-        transform: translateX(0);
-    }
-
-    .project-panel-close {
-        position: absolute;
-        top: var(--spacing-s);
-        right: var(--spacing-s);
-        border: none;
-        background: transparent;
-        font-size: 1.4rem;
-        line-height: 1;
-        cursor: pointer;
-        color: var(--colour-fg-muted);
-    }
-
-    .project-panel-image-wrap {
-        flex: 0 0 48%;
-        overflow: hidden;
-        border-bottom: 1px solid var(--colour-border);
-        background: var(--colour-bg-muted);
-    }
-
-    .project-panel-image-wrap img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-    }
-
-    .project-panel-body {
-        flex: 1;
-        padding: var(--spacing-m);
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-s);
-        overflow-y: auto;
-    }
-
-    .panel-kicker {
-        font-family: Montserrat, monospace;
-        font-size: var(--font-size-xs);
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--colour-fg-muted);
-        margin-bottom: 0.25rem;
-    }
-
-    .panel-subtitle {
-        font-size: var(--font-size-sm);
-        color: var(--colour-fg-muted);
-        margin-top: 0;
-    }
-
-    .panel-meta {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: var(--spacing-s);
-        margin: var(--spacing-s) 0;
-    }
-
-    .panel-meta dt {
-        font-family: Montserrat, monospace;
-        font-size: var(--font-size-xs);
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-        color: var(--colour-fg-muted);
-    }
-
-    .panel-meta dd {
-        margin: 0.15rem 0 0;
-        font-size: var(--font-size-sm);
-    }
-
-    .panel-description {
-        margin-top: var(--spacing-s);
-        font-size: var(--font-size-base);
-        line-height: 1.5;
-    }
-
-    @media (max-width: 768px) {
-        .project-panel-sheet {
-            width: 100%;
-            box-shadow: 0 -18px 40px rgba(0, 0, 0, 0.35);
-            top: auto;
-            bottom: 0;
-            height: min(80vh, 640px);
-            border-radius: 16px 16px 0 0;
-            transform: translateY(100%);
-        }
-
-        .project-panel.is-open .project-panel-sheet {
-            transform: translateY(0);
-        }
-
-        .project-panel-image-wrap {
-            display: none;
-        }
-    }
-</style>
 
 <script>
     // Theme toggle
     (function () {
         const root = document.documentElement;
-        const btn = document.querySelector(".theme-toggle");
+        const btn = document.querySelector(".mode-toggle");
+        const icon = btn?.querySelector(".mode-icon");
         const STORAGE_KEY = "portfolio-theme";
+        const logoTile = document.querySelector(".logo-tile");
 
-        const applyTheme = (theme) => {
+        const LIGHT_BG = "#f7f7f7";
+        const DARK_BG = "#1f1f1f";
+
+        const lerp = (a, b, t) => a + (b - a) * t;
+        const hexToRgb = (hex) => {
+            const val = hex.replace("#", "");
+            return {
+                r: parseInt(val.substring(0, 2), 16),
+                g: parseInt(val.substring(2, 4), 16),
+                b: parseInt(val.substring(4, 6), 16)
+            };
+        };
+        const rgbStringToHex = (rgbString) => {
+            const match = rgbString.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/i);
+            if (!match) return "#000000";
+            const [r, g, b] = match.slice(1, 4).map((v) => parseInt(v, 10));
+            const toHex = (n) => n.toString(16).padStart(2, "0");
+            return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+        };
+        const animateColour = (el, startHex, endHex, duration = 700) => {
+            if (!el) return;
+            const start = hexToRgb(startHex);
+            const end = hexToRgb(endHex);
+            const startTime = performance.now();
+            el.style.backgroundColor = startHex;
+
+            const frame = (time) => {
+                const t = Math.min((time - startTime) / duration, 1);
+                const r = Math.round(lerp(start.r, end.r, t));
+                const g = Math.round(lerp(start.g, end.g, t));
+                const b = Math.round(lerp(start.b, end.b, t));
+                el.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+                if (t < 1) requestAnimationFrame(frame);
+            };
+            requestAnimationFrame(frame);
+        };
+
+        const applyTheme = (theme, animate = false) => {
             if (!root) return;
             if (theme === "dark") {
                 root.setAttribute("data-theme", "dark");
             } else {
                 root.removeAttribute("data-theme");
+            }
+            if (icon) {
+                icon.textContent = theme === "dark" ? "☾" : "☀";
+            }
+            if (logoTile && animate) {
+                logoTile.classList.add("theme-shift");
+                setTimeout(() => {
+                    logoTile.classList.remove("theme-shift");
+                }, 500);
             }
         };
 
@@ -321,15 +201,31 @@ const projects = [
             typeof window !== "undefined"
                 ? window.localStorage.getItem(STORAGE_KEY)
                 : null;
-        if (stored) {
-            applyTheme(stored);
-        }
+        applyTheme(stored === "dark" ? "dark" : "light");
 
         if (btn) {
             btn.addEventListener("click", () => {
                 const isDark = root.getAttribute("data-theme") === "dark";
                 const next = isDark ? "light" : "dark";
-                applyTheme(next);
+                const inner = logoTile?.querySelector(".inner");
+                const fadeTargets = logoTile
+                    ? Array.from(logoTile.querySelectorAll(".inner, .mode-toggle, .logo-socials, .logo-contact"))
+                    : [];
+                const FADE_MS = 250;
+                const currentBg =
+                    (logoTile && rgbStringToHex(getComputedStyle(logoTile).backgroundColor)) ||
+                    (isDark ? DARK_BG : LIGHT_BG);
+                const targetBg = next === "dark" ? DARK_BG : LIGHT_BG;
+                fadeTargets.forEach((el) => {
+                    el.style.opacity = "0";
+                });
+                setTimeout(() => {
+                    applyTheme(next, true);
+                    animateColour(logoTile, currentBg, targetBg);
+                    fadeTargets.forEach((el) => {
+                        el.style.opacity = "1";
+                    });
+                }, FADE_MS);
                 if (typeof window !== "undefined") {
                     window.localStorage.setItem(STORAGE_KEY, next);
                 }
@@ -346,39 +242,32 @@ const projects = [
         const closeBtn = panel.querySelector(".project-panel-close");
 
         const imgEl = document.getElementById("project-panel-image");
-        const kickerEl = document.getElementById("project-panel-kicker");
-        const titleEl = document.getElementById("project-panel-title");
-        const subtitleEl = document.getElementById("project-panel-subtitle");
-        const yearEl = document.getElementById("project-panel-year");
-        const locationEl = document.getElementById("project-panel-location");
-        const roleEl = document.getElementById("project-panel-role");
+        const titleLink = document.getElementById("project-panel-title");
+        const metaEl = document.getElementById("project-panel-meta");
         const descEl = document.getElementById("project-panel-description");
 
         const openPanel = (tile) => {
             if (!tile) return;
             const title = tile.dataset.projectTitle || "";
-            const subtitle = tile.dataset.projectSubtitle || "";
             const year = tile.dataset.projectYear || "";
             const location = tile.dataset.projectLocation || "";
-            const role = tile.dataset.projectRole || "";
             const description = tile.dataset.projectDescription || "";
             const image = tile.dataset.projectImage || "";
+            const link = tile.dataset.link || "";
 
             if (imgEl) {
                 imgEl.src = image;
-                imgEl.alt = title || subtitle || "Project image";
+                imgEl.alt = title || "Project image";
             }
-            if (kickerEl) {
-                const kickerParts = [];
-                if (year) kickerParts.push(year);
-                if (location) kickerParts.push(location);
-                kickerEl.textContent = kickerParts.join(" · ");
+            if (titleLink) {
+                titleLink.textContent = title;
+                titleLink.href = link || "#";
             }
-            if (titleEl) titleEl.textContent = title;
-            if (subtitleEl) subtitleEl.textContent = subtitle;
-            if (yearEl) yearEl.textContent = year;
-            if (locationEl) locationEl.textContent = location;
-            if (roleEl) roleEl.textContent = role;
+            const metaParts = [year, location].filter(Boolean);
+            if (link === "/photography") {
+                metaParts.length = 0;
+            }
+            if (metaEl) metaEl.textContent = metaParts.join(" · ");
             if (descEl) descEl.textContent = description;
 
             panel.classList.add("is-open");
